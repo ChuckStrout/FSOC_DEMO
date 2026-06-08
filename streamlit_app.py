@@ -546,6 +546,29 @@ def css() -> None:
     write_html(
         """
         <style>
+        .brand-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            margin: 0 0 22px;
+            padding: 18px 20px;
+            border: 1px solid #ded7c7;
+            border-radius: 8px;
+            background: rgba(255, 253, 247, 0.96);
+            box-shadow: 0 18px 45px rgba(79, 60, 24, 0.13);
+        }
+        .brand-header h1 {
+            margin: 0;
+            color: #1f2933;
+            font-size: clamp(2rem, 5vw, 4.4rem);
+            line-height: 0.95;
+        }
+        .brand-header .cash-sack {
+            width: 118px;
+            height: 122px;
+            flex: 0 0 auto;
+        }
         .stApp {
             background:
                 linear-gradient(135deg, rgba(47, 158, 68, 0.12), transparent 32%),
@@ -753,6 +776,17 @@ def css() -> None:
         """
     )
 
+def render_brand_header() -> None:
+    write_html(
+        """
+        <div class="brand-header">
+            <h1>FAT SACKS OF CASH</h1>
+            <div class="cash-sack" style="--sack-color:#2f9e44; --fill:22%;" aria-hidden="true">
+                <span class="sack-knot"></span>
+            </div>
+        </div>
+        """
+    )
 
 def render_total_tile(user_id: int) -> None:
     latest = get_latest_entry(user_id)
@@ -836,6 +870,7 @@ def render_coupons(coupons: list[dict]) -> None:
 
 
 def auth_screen() -> None:
+    render_brand_header()
     write_html("<p class=\"eyebrow\">Private budget</p>")
     st.title("Cash Sack Budget")
     tab_sign_in, tab_create = st.tabs(["Sign in", "Create account"])
@@ -863,6 +898,7 @@ def auth_screen() -> None:
 
 
 def daily_page(user_id: int) -> None:
+    render_brand_header()
     write_html("<p class=\"eyebrow\">Daily money check-in</p>")
     st.title("Daily Entry")
     render_total_tile(user_id)
@@ -941,6 +977,7 @@ def daily_page(user_id: int) -> None:
 
 
 def sacks_page(user_id: int) -> None:
+    render_brand_header()
     write_html("<p class=\"eyebrow\">Budget visualizer</p>")
     st.title("Sacks of Cash")
     render_total_tile(user_id)
@@ -965,6 +1002,7 @@ def sacks_page(user_id: int) -> None:
 
 
 def coupons_page(user_id: int) -> None:
+    render_brand_header()
     month_label, coupons = get_coupons(user_id)
     write_html(f"<p class=\"eyebrow\">{html.escape(month_label)}</p>")
     st.title("Earned Coupons")
