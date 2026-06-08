@@ -12,7 +12,7 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
-
+# outer
 ROOT = Path(__file__).parent
 DB_PATH = ROOT / "budget.db"
 
