@@ -867,7 +867,8 @@ def render_coupons(coupons: list[dict]) -> None:
             "</article>"
         )
     write_html(f"<div class=\"coupon-board\">{''.join(cards)}</div>")
-
+#bvjbj
+#;ksnfl;kn
 
 def auth_screen() -> None:
     render_brand_header()
